@@ -1,4 +1,5 @@
 # Deutsch Lernraum — GitHub Pages starter
+by: Sajjad Hussain
 
 A static German-learning website inspired by a level-based A1–C2 course structure. It uses only HTML, CSS and JavaScript.
 
