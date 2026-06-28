@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSK B2 – Vokabeltest Gleichstellung & Arbeitswelt</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; padding: 1.5rem; }
+  .container { max-width: 680px; margin: 0 auto; }
+  header { text-align: center; padding: 2rem 0 1.5rem; }
+  header h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  header p { font-size: 14px; color: #666; }
+  .mode-tabs { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+  .mode-tab { flex: 1; padding: 9px 6px; background: #fff; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; cursor: pointer; color: #555; text-align: center; transition: all 0.15s; }
+  .mode-tab.active { background: #6B4FA0; border-color: #6B4FA0; color: #fff; font-weight: 500; }
+  .progress-wrap { margin-bottom: 1rem; }
+  .progress-bar-bg { background: #e0e0e0; border-radius: 99px; height: 6px; }
+  .progress-bar-fill { background: #6B4FA0; height: 6px; border-radius: 99px; transition: width 0.4s; }
+  .progress-label { font-size: 12px; color: #888; margin-top: 4px; text-align: right; }
+  .card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .question-label { font-size: 12px; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .question-text { font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+  .question-def { font-size: 14px; color: #555; margin-bottom: 1.25rem; line-height: 1.5; }
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+  .opt-btn { background: #f8f8f6; border: 1px solid #e0e0e0; border-radius: 8px; padding: 11px 14px; font-size: 14px; color: #1a1a1a; cursor: pointer; text-align: left; transition: all 0.15s; line-height: 1.4; }
+  .opt-btn:hover:not(:disabled) { background: #f0f0ec; border-color: #bbb; }
+  .opt-btn.correct { background: #EAF3DE; border-color: #3B6D11; color: #27500A; }
+  .opt-btn.wrong { background: #FCEBEB; border-color: #A32D2D; color: #791F1F; }
+  .opt-btn:disabled { cursor: default; }
+  .feedback { font-size: 14px; margin-top: 12px; min-height: 20px; font-weight: 500; }
+  .feedback.ok { color: #6B4FA0; }
+  .feedback.fail { color: #A32D2D; }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; }
+  .score-badge { font-size: 13px; color: #666; }
+  .next-btn { background: #1a1a1a; border: none; border-radius: 8px; padding: 9px 20px; font-size: 14px; cursor: pointer; color: #fff; transition: background 0.15s; }
+  .next-btn:hover { background: #333; }
+  .next-btn:disabled { background: #ccc; cursor: default; }
+  .fill-input { width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #1a1a1a; margin-bottom: 0.75rem; outline: none; transition: border-color 0.15s; }
+  .fill-input:focus { border-color: #6B4FA0; }
+  .fill-input.correct { border-color: #3B6D11; background: #EAF3DE; color: #27500A; }
+  .fill-input.wrong { border-color: #A32D2D; background: #FCEBEB; color: #791F1F; }
+  .check-btn { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 9px 18px; font-size: 14px; cursor: pointer; color: #1a1a1a; transition: all 0.15s; }
+  .check-btn:hover { background: #f5f5f5; }
+  .result-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; }
+  .result-score { font-size: 48px; font-weight: 700; color: #6B4FA0; }
+  .result-total { font-size: 18px; color: #888; }
+  .result-pct { font-size: 22px; font-weight: 600; margin: 6px 0; }
+  .result-msg { font-size: 15px; color: #555; margin: 0.5rem 0 1.75rem; line-height: 1.5; }
+  .grade-bar { height: 8px; background: #e0e0e0; border-radius: 99px; margin: 1rem auto; max-width: 300px; }
+  .grade-fill { height: 8px; border-radius: 99px; background: #6B4FA0; transition: width 0.8s ease; }
+  .restart-btn { background: #6B4FA0; border: none; border-radius: 8px; padding: 11px 28px; font-size: 14px; cursor: pointer; color: #fff; margin-right: 8px; }
+  .restart-btn:hover { background: #5a4187; }
+  footer { text-align: center; padding: 2rem 0 1rem; font-size: 12px; color: #bbb; }
+
+  .sitebar { max-width: 680px; margin: 0 auto .5rem; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:13px; }
+  .sitebar a { color:#555; text-decoration:none; background:#fff; border:1px solid #ddd; border-radius:8px; padding:8px 11px; }
+  .sitebar a:hover { border-color:#999; }
+  .sitebar strong { font-size:14px; }
+</style>
+</head>
+<body>
+<div class="sitebar"><a href="../index.html">← Deutsch Lernraum</a><strong>B2-Berufskurs</strong><a href="index.html">Alle Tests</a></div>
+<div class="container">
+  <header>
+    <h1>BSK B2 – Vokabeltest</h1>
+    <p>Gleichstellung & Arbeitswelt · 11 Begriffe</p>
+  </header>
+  <div class="mode-tabs" id="modeTabs">
+    <div class="mode-tab active" onclick="setMode('mc')">Multiple Choice</div>
+    <div class="mode-tab" onclick="setMode('fill')">Lückentext</div>
+    <div class="mode-tab" onclick="setMode('de2en')">Wort → Definition</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 11</div>
+  </div>
+  <div id="quizArea"></div>
+  <footer>BSK B2 · Vokabeltest · Gleichstellung & Arbeitswelt</footer>
+</div>
+<script>
+const vocab = [
+  { word: "Gehaltsniveau", def: "Die Höhe des Gehalts in einem bestimmten Beruf oder Bereich" },
+  { word: "Gender Pay Gap", def: "Der durchschnittliche Lohnunterschied zwischen Männern und Frauen" },
+  { word: "Elternzeit", def: "Berufliche Auszeit, die Eltern zur Betreuung ihres Kindes nehmen können" },
+  { word: "geschlechtertypisch", def: "Typisch für ein bestimmtes Geschlecht, einem Geschlecht zugeschrieben" },
+  { word: "gläserne Decke", def: "Unsichtbare Barriere, die Frauen am beruflichen Aufstieg hindert" },
+  { word: "ungleich", def: "So verteilt, dass eine Gruppe mehr bekommt oder besser behandelt wird als eine andere" },
+  { word: "eine Präsentation halten", def: "Vor anderen Personen einen Vortrag mit Folien oder Material präsentieren" },
+  { word: "im Nachteil sein", def: "Schlechtere Chancen oder Bedingungen haben als andere" },
+  { word: "Führungskraft", def: "Person in leitender Position, die Verantwortung für Mitarbeiter trägt" },
+  { word: "Betreuung", def: "Versorgung und Aufsicht, z.B. von Kindern" },
+  { word: "Kita", def: "Einrichtung, in der kleine Kinder tagsüber betreut werden, während die Eltern arbeiten" },
+];
+
+let mode = 'mc', questions = [], current = 0, score = 0, answered = false;
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+function buildQuestions() {
+  const s = shuffle(vocab);
+  if (mode === 'mc') {
+    questions = s.map(item => {
+      const w = shuffle(vocab.filter(v => v.word !== item.word)).slice(0,3).map(v => v.word);
+      return { ...item, options: shuffle([item.word, ...w]), answer: item.word };
+    });
+  } else if (mode === 'fill') {
+    questions = s.map(item => ({ ...item, answer: item.word }));
+  } else {
+    questions = s.map(item => {
+      const w = shuffle(vocab.filter(v => v.word !== item.word)).slice(0,3).map(v => v.def);
+      return { ...item, options: shuffle([item.def, ...w]), answer: item.def, prompt: item.word };
+    });
+  }
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-tab').forEach((t,i) => t.classList.toggle('active', ['mc','fill','de2en'][i] === m));
+  startQuiz();
+}
+
+function startQuiz() { buildQuestions(); current = 0; score = 0; answered = false; render(); }
+
+function updateProgress() {
+  const pct = current / questions.length * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = current + ' / ' + questions.length;
+}
+
+function render() {
+  updateProgress();
+  if (current >= questions.length) { showResult(); return; }
+  const q = questions[current];
+  const area = document.getElementById('quizArea');
+  if (mode === 'mc') renderMC(q, area);
+  else if (mode === 'fill') renderFill(q, area);
+  else renderDef(q, area);
+}
+
+function renderMC(q, area) {
+  area.innerHTML = `
+    <div class="card">
+      <p class="question-label">Frage ${current+1} von ${questions.length}</p>
+      <p class="question-text">${q.word}</p>
+      <p class="question-def">${q.def}</p>
+      <p style="font-size:13px;color:#888;margin-bottom:0.75rem;">Welcher Begriff passt zur Definition oben?</p>
+      <div class="options-grid" id="opts"></div>
+      <p class="feedback" id="fb"></p>
+    </div>
+    <div class="nav-row">
+      <span class="score-badge">Punkte: ${score} / ${current}</span>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
+    </div>`;
+  const opts = document.getElementById('opts');
+  q.options.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'opt-btn'; b.textContent = opt;
+    b.onclick = () => selectMC(opt, q.answer);
+    opts.appendChild(b);
+  });
+}
+
+function selectMC(chosen, correct) {
+  if (answered) return; answered = true;
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct');
+    else if (b.textContent === chosen && chosen !== correct) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb');
+  if (chosen === correct) { score++; fb.className='feedback ok'; fb.textContent='✓ Richtig!'; }
+  else { fb.className='feedback fail'; fb.textContent='✗ Falsch. Richtig: ' + correct; }
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function renderFill(q, area) {
+  const esc = q.answer.replace(/'/g,"\\'");
+  area.innerHTML = `
+    <div class="card">
+      <p class="question-label">Frage ${current+1} von ${questions.length} — Welches Wort passt?</p>
+      <p class="question-def" style="font-size:16px;margin-bottom:1rem;">${q.def}</p>
+      <input class="fill-input" id="fillIn" type="text" placeholder="Antwort eingeben …" onkeydown="if(event.key==='Enter')checkFill('${esc}')">
+      <button class="check-btn" onclick="checkFill('${esc}')">Prüfen</button>
+      <p class="feedback" id="fb"></p>
+    </div>
+    <div class="nav-row">
+      <span class="score-badge">Punkte: ${score} / ${current}</span>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
+    </div>`;
+  document.getElementById('fillIn').focus();
+}
+
+function checkFill(correct) {
+  if (answered) return;
+  const inp = document.getElementById('fillIn');
+  const val = inp.value.trim();
+  if (!val) return;
+  answered = true; inp.disabled = true;
+  const ok = val.toLowerCase() === correct.toLowerCase();
+  inp.classList.add(ok ? 'correct' : 'wrong');
+  const fb = document.getElementById('fb');
+  if (ok) { score++; fb.className='feedback ok'; fb.textContent='✓ Richtig!'; }
+  else { fb.className='feedback fail'; fb.textContent='✗ Falsch. Richtig: ' + correct; }
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function renderDef(q, area) {
+  area.innerHTML = `
+    <div class="card">
+      <p class="question-label">Frage ${current+1} von ${questions.length} — Welche Definition passt?</p>
+      <p class="question-text">${q.prompt}</p>
+      <div class="options-grid" id="opts"></div>
+      <p class="feedback" id="fb"></p>
+    </div>
+    <div class="nav-row">
+      <span class="score-badge">Punkte: ${score} / ${current}</span>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
+    </div>`;
+  const opts = document.getElementById('opts');
+  q.options.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'opt-btn'; b.style.fontSize = '13px'; b.style.lineHeight = '1.4';
+    b.textContent = opt;
+    b.onclick = () => selectMC(opt, q.answer);
+    opts.appendChild(b);
+  });
+}
+
+function nextQ() { current++; answered = false; render(); }
+
+function showResult() {
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('progressLabel').textContent = questions.length + ' / ' + questions.length;
+  const pct = Math.round(score / questions.length * 100);
+  const msg = pct >= 90 ? 'Ausgezeichnet! Du kennst die Vokabeln sehr gut.' :
+              pct >= 70 ? 'Gut gemacht! Noch ein paar Übungen und du bist fit.' :
+              pct >= 50 ? 'Nicht schlecht. Übe die schwierigen Wörter noch einmal.' :
+                          'Übe die Vokabeln noch einmal und versuche es erneut.';
+  const color = pct >= 90 ? '#6B4FA0' : pct >= 70 ? '#639922' : pct >= 50 ? '#BA7517' : '#A32D2D';
+  document.getElementById('quizArea').innerHTML = `
+    <div class="result-card">
+      <div class="result-score" style="color:${color}">${score}</div>
+      <div class="result-total">von ${questions.length} Fragen</div>
+      <div class="result-pct" style="color:${color};margin-top:6px">${pct}%</div>
+      <div class="grade-bar"><div class="grade-fill" style="width:0%;background:${color}" id="gf"></div></div>
+      <p class="result-msg">${msg}</p>
+      <button class="restart-btn" onclick="startQuiz()">Nochmal versuchen</button>
+    </div>`;
+  setTimeout(() => { const gf = document.getElementById('gf'); if(gf) gf.style.width = pct + '%'; }, 100);
+}
+
+startQuiz();
+</script>
+</body>
+</html>
