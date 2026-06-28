@@ -32,3 +32,16 @@ body.dark{--bg:#0f172a;--surface:#172033;--text:#e5edf9;--muted:#9aabc3;--border
 @media(max-width:620px){.test-list{grid-template-columns:1fr}}
 
 .lesson-content{max-width:920px}.lesson-content h2{margin-top:2.2rem}.lesson-content li{margin:.45rem 0}.callout{background:var(--primary-soft);border-left:4px solid var(--primary);padding:15px 17px;border-radius:12px;margin-bottom:22px}.example-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.mini-card,.practice-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin:12px 0}.practice-card blockquote{margin:0 0 14px;padding:12px 14px;background:var(--bg);border-left:4px solid var(--primary)}details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 15px;margin:14px 0}summary{cursor:pointer;font-weight:750}.alphabet-nav{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.alphabet-nav a{width:34px;height:34px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--primary);font-weight:800}.sentence-group{scroll-margin-top:145px}.sentence-group li{padding:7px 0;border-bottom:1px solid var(--border)}.inline-input{max-width:190px;padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}select{padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}.writing-box{width:100%;min-height:170px;padding:13px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);resize:vertical}@media(max-width:700px){.example-grid{grid-template-columns:1fr}}
+
+/* Urdu / Nastaleeq example on the homepage */
+.urdu-inline,.urdu-section{font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Noto Serif Arabic",serif}
+.urdu-inline{max-width:760px;font-size:1.08rem;line-height:2.25;text-align:right;margin-top:14px;color:var(--muted)}
+.urdu-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(22px,4vw,42px);box-shadow:var(--shadow);text-align:right}
+.urdu-panel h2{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.8;margin:12px 0 8px}
+.urdu-lead{font-size:1.15rem;line-height:2.3;color:var(--muted);max-width:950px;margin-right:0}
+.urdu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+.urdu-grid article{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px}
+.urdu-grid h3{margin:0 0 8px;font-size:1.2rem;line-height:1.9;color:var(--primary)}
+.urdu-grid p{margin:0;color:var(--muted);line-height:2.15}
+.urdu-note{margin:20px 0 0;color:var(--muted);font-size:.9rem;line-height:2}
+@media(max-width:700px){.urdu-grid{grid-template-columns:1fr}.urdu-inline{font-size:1rem}.urdu-panel{padding:20px}}

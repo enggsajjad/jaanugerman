@@ -54,3 +54,8 @@ The A2 folder contains nine linked modules: vocabulary, grammar, sentences, read
 
 ## Complete CEFR structure
 A1, A2, B1, B2, C1 and C2 each contain nine linked modules. The BSK_B2 section and its vocabulary tests are preserved.
+
+
+## Urdu/Nastaleeq example
+
+The main `index.html` now includes an example Urdu translation section. Urdu text uses the Google-hosted **Noto Nastaliq Urdu** web font, with local Urdu/Arabic serif fallbacks. All previous A1–C2 and BSK_B2 pages remain unchanged.
