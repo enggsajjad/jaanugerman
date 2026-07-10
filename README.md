@@ -1,5 +1,4 @@
 # Deutsch Lernraum — GitHub Pages starter
-by: Sajjad Hussain
 
 A static German-learning website inspired by a level-based A1–C2 course structure. It uses only HTML, CSS and JavaScript.
 
@@ -60,3 +59,7 @@ A1, A2, B1, B2, C1 and C2 each contain nine linked modules. The BSK_B2 section a
 ## Urdu/Nastaleeq example
 
 The main `index.html` now includes an example Urdu translation section. Urdu text uses the Google-hosted **Noto Nastaliq Urdu** web font, with local Urdu/Arabic serif fallbacks. All previous A1–C2 and BSK_B2 pages remain unchanged.
+
+
+## Gesamtwortschatz
+`vocabulary.html` combines vocabulary from A1–C2 and BSK_B2, with search, filters, pronunciation and randomized 20/30-word tests.
