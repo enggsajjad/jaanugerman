@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wörterbuch / Dictionary — Deutsch Lernraum</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="container nav"><a class="brand" href="index.html"><span class="brand-mark">DE</span>Deutsch Lernraum</a><nav class="nav-links"><a href="index.html">Home</a><a class="active" href="dictionary.html">Wörterbuch</a><a href="#practice">Practice</a><button class="icon-btn" data-theme aria-label="Dark mode">🌙</button></nav></div></header>
+<div class="course-tabs-wrap"><nav class="container course-tabs"><a href="A1/index.html">A1</a><a href="A2/index.html">A2</a><a href="B1/index.html">B1</a><a href="B2/index.html">B2</a><a href="BSK_B2/index.html">BSK_B2</a><a href="C1/index.html">C1</a><a href="C2/index.html">C2</a><a class="active" href="dictionary.html">Wörterbuch</a></nav></div>
+<main>
+<div class="container breadcrumb"><a href="index.html">Home</a> / Wörterbuch</div>
+<section class="page-head"><div class="container"><span class="eyebrow">A1–C2 + BSK B2</span><h1>📖 Wörterbuch / Dictionary</h1><p><strong id="dictionaryTotal">0</strong> Lernwörter durchsuchen, nach Niveau oder Wortart filtern, anhören und anschließend üben.</p></div></section>
+<section class="section dictionary-section"><div class="container">
+<div class="dictionary-toolbar card-panel">
+<label class="dictionary-search-label">Wort suchen<input id="dictionarySearch" class="search" type="search" placeholder="Deutsch, Englisch, Beispiel oder Thema …"></label>
+<div class="dictionary-filter-group"><span>Niveau:</span><div id="levelButtons" class="filter-buttons"></div></div>
+<div class="dictionary-filter-group"><span>Wortart:</span><div id="typeButtons" class="filter-buttons"></div></div>
+<div class="dictionary-summary"><strong id="dictionaryVisible">0</strong> Wörter angezeigt</div>
+</div>
+<nav id="alphabetNav" class="alphabet-nav dictionary-alphabet" aria-label="Alphabet"></nav>
+<div id="dictionaryList" class="dictionary-list"></div>
+<div id="dictionaryEmpty" class="empty" hidden>Keine Wörter gefunden. Ändern Sie den Suchbegriff oder die Filter.</div>
+</div></section>
+<section class="section" id="practice"><div class="container"><div class="practice-launch card-panel"><div><span class="eyebrow">Vokabeltraining</span><h2>Test aus dem Wörterbuch erstellen</h2><p>Der Test verwendet die aktuell gewählten Niveau- und Wortartfilter. Der Suchtext wird nicht berücksichtigt.</p></div><div class="test-options"><label>Anzahl<select id="testSize"><option value="20">20 Wörter</option><option value="30">30 Wörter</option></select></label><label>Richtung<select id="testDirection"><option value="de-to-en">Deutsch → Englisch / Definition</option><option value="en-to-de">Englisch / Definition → Deutsch</option></select></label><button class="btn primary" id="startDictionaryTest">Test starten</button></div></div><div id="dictionaryQuiz" class="quiz-panel" hidden></div></div></section>
+</main>
+<footer><div class="container">Deutsch Lernraum · Wörterbuch A1–C2</div></footer>
+<script src="assets/vocabulary-data.js"></script><script src="assets/dictionary.js"></script><script src="assets/app.js"></script>
+</body></html>

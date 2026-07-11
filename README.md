@@ -63,3 +63,7 @@ The main `index.html` now includes an example Urdu translation section. Urdu tex
 
 ## Gesamtwortschatz
 `vocabulary.html` combines vocabulary from A1–C2 and BSK_B2, with search, filters, pronunciation and randomized 20/30-word tests.
+
+## Wörterbuch verwalten
+
+Die frühere Seite `vocabulary.html` wurde durch `dictionary.html` ersetzt. Neue Wörter werden zentral in `assets/vocabulary-data.js` eingetragen. Eine ausführliche Anleitung mit Beispielen befindet sich in [ADDING_WORDS.md](ADDING_WORDS.md).
