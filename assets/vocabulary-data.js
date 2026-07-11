@@ -1,5 +1,17 @@
 window.VOCABULARY_DATA = [
   {
+    "level": "B2",
+    "topic": "Politik und Gesellschaft",
+    "word": "abschaffen",
+    "translation": "to abolish",
+    "germanExample": "Die Regierung möchte die Todesstrafe endgültig abschaffen.",
+    "exampleTranslation": "The government wants to abolish the death penalty once and for all.",
+    "type": "Verben",
+    "grammar": "+ Akkusativ",
+    "combinations": ["eine Regelung abschaffen", "das Gesetz abschaffen", "die Todesstrafe abschaffen"],
+    "conjugation": "Präsens: schafft ab · Präteritum: schaffte ab · Perfekt: hat abgeschafft"
+  },
+  {
     "level": "A1",
     "topic": "Begrüßung & Alltag 6 words",
     "word": "Hallo",
